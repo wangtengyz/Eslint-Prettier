@@ -1,18 +1,18 @@
-# Eslint+Prettier团队代码规范配置
+# Eslint+Prettier 团队代码规范配置
 
-## Eslint配置
+## Eslint 配置
 
-Eslint 是一个可以检验代码，并给出报告的工具。它的目标是保证代码的一致性，避免错误。本项目采用` eslint-config-airbnb `社区方案来配置。
+Eslint 是一个可以检验代码，并给出报告的工具。它的目标是保证代码的一致性，避免错误。本项目采用`eslint-config-airbnb`社区方案来配置。
 
 项目安装插件说明：
 
-* eslint-plugin-import：此插件主要为了校验 import/export 语法，防止错误拼写文件路径以及导出名称的问题;
+-   eslint-plugin-import：此插件主要为了校验 import/export 语法，防止错误拼写文件路径以及导出名称的问题;
 
-* eslint-plugin-jsx-a11y：提供 jsx 元素可访问性校验;
+-   eslint-plugin-jsx-a11y：提供 jsx 元素可访问性校验;
 
-* eslint-plugin-react：校验 React;
+-   eslint-plugin-react：校验 React;
 
-* eslint-plugin-react-hooks：根据 Hooks API 校验 Hooks 的使用;
+-   eslint-plugin-react-hooks：根据 Hooks API 校验 Hooks 的使用;
 
 执行如下命令安装依赖：
 
@@ -20,18 +20,20 @@ Eslint 是一个可以检验代码，并给出报告的工具。它的目标是�
 yarn add eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks -D
 ```
 
-## 生成Eslint配置文件
+## 生成 Eslint 配置文件
 
 在控制台运行下面命令：
+
 ```
 ./node_modules/.bin/eslint --init
 ```
+
 ```
 ✔ How would you like to use ESLint? · problems
 ✔ What type of modules does your project use? · esm
 ✔ Which framework does your project use? · react
 ✔ Does your project use TypeScript? · Yes
-✔ Where does your code run? · browser                                                    ✔ What format do you want your 
+✔ Where does your code run? · browser                                                    ✔ What format do you want your
 ```
 
 基本配置介绍如下：
@@ -87,6 +89,8 @@ module.exports = {
             }
         ],
         'no-useless-escape': 2,
+        indent: [2, 4],
+        'react/jsx-indent': [2, 4],
     }
 };
 
@@ -118,7 +122,7 @@ yarn add  prettier eslint-config-prettier eslint-plugin-prettier -D
 ```
 module.exports = {
   "printWidth": 120, //一行的字符数，如果超过会进行换行，默认为80
-  "tabWidth": 2, //一个tab代表几个空格数，默认为2
+  "tabWidth": 4, //一个tab代表几个空格数，默认为2
 }
 ```
 
@@ -127,6 +131,7 @@ module.exports = {
 1. 在 VS Code 商店中寻找并安装插件 ESlint，Prettier
 
 2. 编辑 settings.json,然后增加如下参数：
+
 ```
   "files.autoSave": "onFocusChange",
   "editor.formatOnSave": true,
@@ -138,19 +143,35 @@ module.exports = {
 
 这样当我们在保存文件的时候，就会自动优化文件格式了。
 
+3. 项目创建.editorconfig 文件【主要是为了统一 vscode 默认的 tab 为 4，eslint 默认为 2】
+
+```
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+```
+
 # 提交校验
 
 如果，我们想要使用 git 提交代码时，通过 prettier 来优化代码，还需要借助一些工具来完成。
 
-* husky：一个方便用来处理 pre-commit 、 pre-push 等 githooks 的工具
-* lint-staged：对 git 暂存区的代码，运行 linters 的工具
+-   husky：一个方便用来处理 pre-commit 、 pre-push 等 githooks 的工具
+-   lint-staged：对 git 暂存区的代码，运行 linters 的工具
 
 1. 安装依赖
 
 ```
 yarn add lint-staged husky -D
 ```
+
 2. 增加配置
+
 ```
 // package.json
 {
