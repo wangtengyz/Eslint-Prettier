@@ -136,8 +136,6 @@ module.exports = {
   "files.autoSave": "onFocusChange",
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
-  "eslint.autoFixOnSave": true,
-  "eslint.enable": true,
 
 ```
 
